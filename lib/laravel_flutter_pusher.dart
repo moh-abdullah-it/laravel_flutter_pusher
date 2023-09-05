@@ -332,8 +332,8 @@ class Event {
 
 @JsonSerializable()
 class ConnectionStateChange {
-  final String currentState;
-  final String previousState;
+  final String? currentState;
+  final String? previousState;
 
   ConnectionStateChange(
       {required this.currentState, required this.previousState});
@@ -346,9 +346,9 @@ class ConnectionStateChange {
 
 @JsonSerializable()
 class ConnectionError {
-  final String message;
-  final String code;
-  final String exception;
+  final String? message;
+  final String? code;
+  final String? exception;
 
   ConnectionError(
       {required this.message, required this.code, required this.exception});

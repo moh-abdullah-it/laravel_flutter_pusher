@@ -25,13 +25,18 @@ class _MyAppState extends State<MyApp> {
 
   void setUpServices() {
     var options = PusherOptions(
-        host: '10.0.2.2', port: 6001, encrypted: false, cluster: 'eu');
+      host: 'socket.code-link.com',
+      port: 6001,
+      encrypted: true,
+    );
 
-    LaravelFlutterPusher pusher =
-        LaravelFlutterPusher('app_key', options, enableLogging: true);
-    pusher
-        .subscribe('channel')
-        .bind('event', (event) => log('event =>' + event.toString()));
+    LaravelFlutterPusher pusher = LaravelFlutterPusher(
+        '25bea58d-98eb-4c2c-9436-5d9912fb737f', options, enableLogging: true,
+        onConnectionStateChange: (state) {
+      log('state ${state.currentState}');
+    });
+    pusher.subscribe('test').bind('App\\Events\\TestEvent',
+        (event) => log('event =>' + event.toString()));
   }
 
   @override
